@@ -20,9 +20,17 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Initialize a BaseModel Instance.
         """
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        if kwargs:
+            for key, value in kwargs.items():
+                if key in ("created_at", "updated_at"):
+                    date_tmp = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, date_tmp)
+                if key != '__class__':
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """Generates a human readable string that represents a BaseModel

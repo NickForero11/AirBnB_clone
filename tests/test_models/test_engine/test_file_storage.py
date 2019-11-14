@@ -5,6 +5,7 @@ This module contains the tests for FileStorage class
 import unittest
 import models
 from os.path import isfile as exist_file
+from os import remove
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
@@ -18,6 +19,8 @@ class TestFileStorage(unittest.TestCase):
 
     def tearDown(self):
         del self.storage
+        if exist_file('file.json'):
+            remove('file.json')
 
     def test_private_class_attributes(self):
         self.assertFalse(hasattr(self.storage, '__file_path'))

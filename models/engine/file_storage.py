@@ -36,7 +36,7 @@ class FileStorage:
             obj (BaseModel): The instance (object) that will be stored in
                              runtime memory.
         """
-        key = f'{obj.__class__.__name__}.{obj.id}'
+        key = '{}.{}'.format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):

@@ -35,21 +35,21 @@ class TestFileStorage(unittest.TestCase):
 
     def test_new(self):
         fake_data = BaseModel()
-        key = f'{fake_data.__class__.__name__}.{fake_data.id}'
+        key = '{}.{}'.format(fake_data.__class__.__name__, fake_data.id)
         response = self.storage.all()
         self.assertTrue(key in response)
         self.assertTrue(response[key] is fake_data)
 
     def test_save(self):
         fake_data = BaseModel()
-        key = f'{fake_data.__class__.__name__}.{fake_data.id}'
+        key = '{}.{}'.format(fake_data.__class__.__name__, fake_data.id)
         instance_onmemory = self.storage.all()
         fake_data.save()
         exist_file(self.storage._FileStorage__file_path)
 
     def test_reload(self):
         fake_data = BaseModel()
-        key = f'{fake_data.__class__.__name__}.{fake_data.id}'
+        key = '{}.{}'.format(fake_data.__class__.__name__, fake_data.id)
         instance_onmemory = self.storage.all()
         fake_data.save()
         self.storage.reload()

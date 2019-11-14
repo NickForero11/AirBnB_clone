@@ -42,7 +42,8 @@ class BaseModel:
             str: The string representation of the BaseModel with its
                  ID and its Dict of variables.
         """
-        return f'[{self.__class__.__name__}] ({self.id}) {self.__dict__}'
+        base = "[{:s}] ({:s}) {}"
+        return base.format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """Updates the date of the last modification in the instance using its

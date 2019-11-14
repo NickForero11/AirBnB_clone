@@ -59,5 +59,5 @@ class FileStorage:
                 data = read_data(file)
                 for key, value in data.items():
                     class_name = key.split('.')[0]
-                    instance = BaseModel (**value)
+                    instance = BaseModel(**value)
                     FileStorage.__objects[key] = instance

@@ -59,6 +59,5 @@ class FileStorage:
             with open(self.__file_path, "r", encoding="UTF-8") as file:
                 data = read_data(file)
                 for key, value in data.items():
-                    class_name = key.split('.')[0]
                     instance = BaseModel(**value)
                     FileStorage.__objects[key] = instance
